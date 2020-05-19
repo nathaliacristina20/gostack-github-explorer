@@ -8,7 +8,7 @@
 </h3>
 
 <p align="center">
-  <a href="#rocket-sobre-o-projeto">Sobre o projeto</a> | <a href="#computer-tecnologias">Tecnologias</a> | <a href="#books-guia-de-instalação-e-execução">Guia de instalação e execução</a> | <a href="#pencil-como-contribuir">Como contribuir</a> | <a href="#page_with_curl-licença">Licença</a>
+  <a href="#rocket-sobre-o-projeto">Sobre o projeto</a> | <a href="#computer-tecnologias">Tecnologias</a> | <a href="#books-guia-de-instalação-e-execução">Guia de instalação e execução</a> | <a href="#scroll-licença">Licença</a>
 </p>
 
 ## Layout
@@ -38,12 +38,27 @@
 - PostgreSQL
 
 ### Como executar
-:construction: Em construção!
 
-## :pencil: Como contribuir
-:construction: Em construção!
+```bash
+# Clone este repositório e acesse a pasta
+git clone https://github.com/nathaliacristina20/gostack-github-explorer.git && cd gostack-github-explorer
 
-## :page_with_curl: Licença
+# Instale as dependencias com yarn OU
+yarn
+
+# Instale as dependencias com npm
+npm install
+
+# Rode a aplicação com o comando de acordo com seu gerenciador de pacotes
+yarn start
+
+# OU
+npm start
+
+# Pronto, a aplicação está rodando! Acesse http://localhost:3000 no browser.
+```
+
+## :scroll: Licença
 
 Esse projeto está sob a licença MIT. Veja o arquivo <a href="https://github.com/nathaliacristina20/gostack-github-explorer/blob/master/LICENSE">LICENSE</a> para mais detalhes.
 
