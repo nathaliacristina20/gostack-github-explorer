@@ -1,44 +1,51 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+<h1 align="center">
+ GitHub Explorer
+</h1>
 
-In the project directory, you can run:
+<h3 align="center">
+ Explore repositórios de forma simples!
+</h3>
 
-### `yarn start`
+<p align="center">
+  <a href="#rocket-sobre-o-projeto">Sobre o projeto</a> | <a href="#computer-tecnologias">Tecnologias</a> | <a href="#books-guia-de-instalação-e-execução">Guia de instalação e execução</a> | <a href="#pencil-como-contribuir">Como contribuir</a> | <a href="#page_with_curl-licença">Licença</a>
+</p>
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Layout
+<img src=".github/mockup.png">
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## :rocket: Sobre o projeto
 
-### `yarn test`
+<p>Este é um projeto para explorar repositórios no GitHub de maneira fácil e simples.</p>
+<p>Adicione quantos quiser e tenha fácil acesso as principais informações e issues abertas.</p>
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## :computer: Tecnologias
 
-### `yarn build`
+- ReactJS
+- Typescript
+- ESLint
+- Prettier
+- React Router DOM
+- React Navigation
+- Styled Components
+- Axios
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## :books: Guia de instalação e execução
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Pré-requisitos
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Yarn ou npm
+- PostgreSQL
 
-### `yarn eject`
+### Como executar
+:construction: Em construção!
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## :pencil: Como contribuir
+:construction: Em construção!
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## :page_with_curl: Licença
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Esse projeto está sob a licença MIT. Veja o arquivo <a href="https://github.com/nathaliacristina20/gostack-github-explorer/blob/master/LICENSE">LICENSE</a> para mais detalhes.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<hr />
+<p>by Nathalia Cristina :wave: <a href="https://linktr.ee/nathaliacristina20">Get in touch!</a></p>
