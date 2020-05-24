@@ -33,15 +33,22 @@ const IntlUniversalProvider: React.FC = ({ children }) => {
     'en-US': enUS,
   });
 
-  const [currentLanguage, setCurrentLanguage] = usePersistedState(
-    'language',
-    'pt-BR',
-  );
+  // const [currentLanguage, setCurrentLanguage] = usePersistedState(
+  //   'language',
+  //   'pt-BR',
+  // );
+
+  const [currentLanguage, setCurrentLanguage] = useState(() => {
+    localStorage.setItem('language', 'pt-BR');
+
+    return 'pt-BR';
+  });
+
+  const currentLocale = locales[currentLanguage] ? currentLanguage : 'pt-BR';
 
   const [initDone, setInitDone] = useState(false);
 
   useEffect(() => {
-    const currentLocale = locales[currentLanguage] ? currentLanguage : 'pt-BR';
     intl
       .init({
         currentLocale,
@@ -50,10 +57,20 @@ const IntlUniversalProvider: React.FC = ({ children }) => {
       .then(() => {
         setInitDone(true);
       });
-  }, [currentLanguage, locales]);
+  }, [currentLanguage, locales, currentLocale]);
 
   const changeCurrentLocale = useCallback(() => {
-    setCurrentLanguage(currentLanguage === 'pt-BR' ? 'en-US' : 'pt-BR');
+    // setCurrentLanguage(currentLanguage === 'pt-BR' ? 'en-US' : 'pt-BR');
+    let changedLanguage;
+    if (currentLanguage === 'pt-BR') {
+      changedLanguage = 'en-US';
+      localStorage.setItem('language', changedLanguage);
+    } else {
+      changedLanguage = 'pt-BR';
+      localStorage.setItem('language', changedLanguage);
+    }
+    setCurrentLanguage(changedLanguage);
+    setInitDone(false);
   }, [currentLanguage, setCurrentLanguage]);
 
   return (

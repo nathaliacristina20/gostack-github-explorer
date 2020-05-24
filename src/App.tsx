@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import GlobalStyle from './styles/global';
 
-import { IntlUniversalProvider } from './context/IntlUniversalContext';
+import { IntlUniversalProvider } from './hooks/IntlUniversalContext';
 
 import Routes from './routes';
 

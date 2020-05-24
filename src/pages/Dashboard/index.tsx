@@ -1,5 +1,5 @@
 import React, { useState, useEffect, FormEvent } from 'react';
-import Switch from 'react-switch';
+
 import intl from 'react-intl-universal';
 
 import { Link } from 'react-router-dom';
@@ -7,10 +7,10 @@ import { Link } from 'react-router-dom';
 import { FiChevronRight } from 'react-icons/fi';
 import api from '../../services/api';
 
-import logoImg from '../../assets/logo.svg';
-import { Title, Form, Repositories, Error } from './styles';
+import { useIntlUniversal } from '../../hooks/IntlUniversalContext';
+import Header from '../../components/Header';
 
-import { useIntlUniversal } from '../../context/IntlUniversalContext';
+import { Title, Form, Repositories, Error } from './styles';
 
 interface IRepository {
   full_name: string;
@@ -25,7 +25,7 @@ const Dashboard: React.FC = () => {
   const [newRepo, setNewRepo] = useState('');
   const [inputError, setInputError] = useState('');
 
-  const { changeCurrentLocale, currentLanguage } = useIntlUniversal();
+  const { currentLanguage } = useIntlUniversal();
 
   const [repositories, setRepositories] = useState<IRepository[]>(() => {
     const storagedRepositories = localStorage.getItem(
@@ -44,7 +44,7 @@ const Dashboard: React.FC = () => {
       '@GithubExplorer:repositories',
       JSON.stringify(repositories),
     );
-  }, [repositories, currentLanguage]);
+  }, [repositories]);
 
   async function handleAddRepository(
     event: FormEvent<HTMLFormElement>,
@@ -68,19 +68,7 @@ const Dashboard: React.FC = () => {
   }
   return (
     <>
-      <img src={logoImg} alt="Github Explore" />
-
-      <Switch
-        onChange={changeCurrentLocale}
-        checked={currentLanguage === 'pt-BR'}
-        checkedIcon={false}
-        uncheckedIcon={false}
-        height={10}
-        width={40}
-        handleDiameter={20}
-        offColor="#333"
-        onColor="#04d361"
-      />
+      <Header />
 
       <Title>{intl.get('home.title')}</Title>
       {/* ou !!inputError */}
