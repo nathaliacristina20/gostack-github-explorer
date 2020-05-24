@@ -12,12 +12,17 @@
 </p>
 
 ## Layout
-<img src=".github/mockup.png">
+<img src=".github/githubexplorer.gif">
 
 ## :rocket: Sobre o projeto
 
 <p>Este é um projeto para explorar repositórios no GitHub de maneira fácil e simples.</p>
 <p>Adicione quantos quiser e tenha fácil acesso as principais informações e issues abertas.</p>
+
+<strong>Funcionalidades inseridas fora da aula :rocket: </strong>
+
+- [X] Internacionalização 
+- [ ] Tema Dark
 
 ## :computer: Tecnologias
 
