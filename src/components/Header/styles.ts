@@ -33,7 +33,7 @@ export const Languages = styled.div<ITeste>`
     ${(props) =>
       props.currentLanguage === 'en-US' &&
       css`
-        box-shadow: 0 0 5px 3px #04d361;
+        box-shadow: 0 0 5px 3px #b22222;
       `}
   }
 `;

@@ -17,7 +17,7 @@ const Header: React.FC = ({ children }) => {
 
   return (
     <>
-      <Languages currentLanguage={String(currentLanguage)}>
+      <Languages currentLanguage={currentLanguage.language}>
         <img
           src={BrFlag}
           height={20}
