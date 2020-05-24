@@ -11,9 +11,12 @@ import intl from 'react-intl-universal';
 import ptBR from '../locales/pt-BR.json';
 import enUS from '../locales/en-US.json';
 
+import usePersistedState from '../utils/usePersistedState';
+
 interface IIntlUniversalContextData {
-  changeCurrentLocale(language: string): void;
+  changeCurrentLocale(): void;
   initDone?: boolean;
+  currentLanguage: string;
 }
 
 interface ILocales {
@@ -30,7 +33,10 @@ const IntlUniversalProvider: React.FC = ({ children }) => {
     'en-US': enUS,
   });
 
-  const [currentLanguage, setCurrentLanguage] = useState('pt-BR');
+  const [currentLanguage, setCurrentLanguage] = usePersistedState(
+    'language',
+    'pt-BR',
+  );
 
   const [initDone, setInitDone] = useState(false);
 
@@ -42,19 +48,18 @@ const IntlUniversalProvider: React.FC = ({ children }) => {
         locales,
       })
       .then(() => {
-        console.log('IntlUniversalContext 1', intl.get('home.title'));
         setInitDone(true);
       });
   }, [currentLanguage, locales]);
 
-  console.log('IntlUniversalContext 2', intl.get('home.title'));
-
-  const changeCurrentLocale = useCallback((language: string) => {
-    setCurrentLanguage(language);
-  }, []);
+  const changeCurrentLocale = useCallback(() => {
+    setCurrentLanguage(currentLanguage === 'pt-BR' ? 'en-US' : 'pt-BR');
+  }, [currentLanguage, setCurrentLanguage]);
 
   return (
-    <IntlUniversalContext.Provider value={{ changeCurrentLocale }}>
+    <IntlUniversalContext.Provider
+      value={{ changeCurrentLocale, currentLanguage }}
+    >
       {initDone && children}
     </IntlUniversalContext.Provider>
   );
