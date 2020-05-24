@@ -1,15 +1,16 @@
 import React, { useState, useEffect, FormEvent } from 'react';
 
+import intl from 'react-intl-universal';
+
 import { Link } from 'react-router-dom';
 
 import { FiChevronRight } from 'react-icons/fi';
-import { Title, Form, Repositories, Error } from './styles';
-
 import api from '../../services/api';
 
 import logoImg from '../../assets/logo.svg';
+import { Title, Form, Repositories, Error } from './styles';
 
-interface Repository {
+interface IRepository {
   full_name: string;
   description: string;
   owner: {
@@ -22,7 +23,7 @@ const Dashboard: React.FC = () => {
   const [newRepo, setNewRepo] = useState('');
   const [inputError, setInputError] = useState('');
 
-  const [repositories, setRepositories] = useState<Repository[]>(() => {
+  const [repositories, setRepositories] = useState<IRepository[]>(() => {
     const storagedRepositories = localStorage.getItem(
       '@GithubExplorer:repositories',
     );
@@ -30,6 +31,7 @@ const Dashboard: React.FC = () => {
     if (storagedRepositories) {
       return JSON.parse(storagedRepositories);
     }
+
     return [];
   });
 
@@ -51,7 +53,7 @@ const Dashboard: React.FC = () => {
     }
 
     try {
-      const response = await api.get<Repository>(`repos/${newRepo}`);
+      const response = await api.get<IRepository>(`repos/${newRepo}`);
       const repository = response.data;
       setRepositories([...repositories, repository]);
       setNewRepo('');
@@ -63,19 +65,18 @@ const Dashboard: React.FC = () => {
   return (
     <>
       <img src={logoImg} alt="Github Explore" />
-      <Title>Explore repositórios no Github</Title>
-
+      <Title>{intl.get('home.title')}</Title>
       {/* ou !!inputError */}
+
       <Form hasError={Boolean(inputError)} onSubmit={handleAddRepository}>
         <input
           type="text"
-          placeholder="Digite o nome do repositorio"
+          placeholder={intl.get('home.search.placeholder')}
           value={newRepo}
           onChange={(e) => setNewRepo(e.target.value)}
         />
-        <button type="submit">Pesquisar</button>
+        <button type="submit">{intl.get('home.search.button')}</button>
       </Form>
-
       {inputError && <Error>{inputError}</Error>}
       <Repositories>
         {repositories.map((repository) => (

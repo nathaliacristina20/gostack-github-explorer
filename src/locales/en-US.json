@@ -1,0 +1,9 @@
+{
+  "home": {
+    "title": "Explore repositories on Github",
+    "search": {
+      "placeholder": "Enter the name of the repository",
+      "button": "Search"
+    }
+  }
+}
