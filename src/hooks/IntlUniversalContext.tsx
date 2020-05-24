@@ -33,31 +33,26 @@ const IntlUniversalProvider: React.FC = ({ children }) => {
     'en-US': enUS,
   });
 
-  // const [currentLanguage, setCurrentLanguage] = usePersistedState(
-  //   'language',
-  //   'pt-BR',
-  // );
-
   const [currentLanguage, setCurrentLanguage] = useState(() => {
     localStorage.setItem('language', 'pt-BR');
 
     return 'pt-BR';
   });
 
-  const currentLocale = locales[currentLanguage] ? currentLanguage : 'pt-BR';
-
   const [initDone, setInitDone] = useState(false);
 
   useEffect(() => {
     intl
       .init({
-        currentLocale,
+        currentLocale: currentLanguage,
         locales,
       })
       .then(() => {
         setInitDone(true);
       });
-  }, [currentLanguage, locales, currentLocale]);
+
+    setInitDone(false);
+  }, [currentLanguage, locales]);
 
   const changeCurrentLocale = useCallback(() => {
     // setCurrentLanguage(currentLanguage === 'pt-BR' ? 'en-US' : 'pt-BR');
@@ -70,14 +65,13 @@ const IntlUniversalProvider: React.FC = ({ children }) => {
       localStorage.setItem('language', changedLanguage);
     }
     setCurrentLanguage(changedLanguage);
-    setInitDone(false);
   }, [currentLanguage, setCurrentLanguage]);
 
   return (
     <IntlUniversalContext.Provider
       value={{ changeCurrentLocale, currentLanguage }}
     >
-      {initDone && children}
+      {children}
     </IntlUniversalContext.Provider>
   );
 };

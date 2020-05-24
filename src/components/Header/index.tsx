@@ -1,31 +1,42 @@
-import React, { useRef } from 'react';
-import Switch from 'react-switch';
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+import React from 'react';
 
 import { useIntlUniversal } from '../../hooks/IntlUniversalContext';
 
 import logoImg from '../../assets/logo.svg';
 
-import { Container } from './styles';
+import BrFlag from '../../assets/br-flag.png';
+import UsFlag from '../../assets/us-flag.png';
 
-const Header: React.FC = () => {
+import { Container, Languages } from './styles';
+
+const Header: React.FC = ({ children }) => {
   const { changeCurrentLocale, currentLanguage } = useIntlUniversal();
 
   return (
-    <Container>
-      <img src={logoImg} alt="Github Explore" />
+    <>
+      <Languages currentLanguage={String(currentLanguage)}>
+        <img
+          src={BrFlag}
+          height={20}
+          className="ptBR"
+          onClick={changeCurrentLocale}
+        />
+        <img
+          src={UsFlag}
+          height={20}
+          className="enUS"
+          onClick={changeCurrentLocale}
+        />
+      </Languages>
+      <Container>
+        <img src={logoImg} alt="Github Explore" />
 
-      <Switch
-        onChange={changeCurrentLocale}
-        checked={currentLanguage === 'pt-BR'}
-        checkedIcon={false}
-        uncheckedIcon={false}
-        height={10}
-        width={40}
-        handleDiameter={20}
-        offColor="#333"
-        onColor="#04d361"
-      />
-    </Container>
+        {children}
+      </Container>
+    </>
   );
 };
 

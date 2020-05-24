@@ -5,5 +5,13 @@
       "placeholder": "Digite o nome do repositório",
       "button": "Pesquisar"
     }
+  },
+  "buttons":{
+    "back": "Voltar",
+    "issues-open": "Issues abertas"
+  },
+  "errors": {
+    "empty-search": "Digite o autor/nome do repositório",
+    "repository-not-found": "O repositório <strong>{repository}</strong> não foi encontrado"
   }
 }

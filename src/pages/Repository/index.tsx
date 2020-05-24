@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useRouteMatch, Link } from 'react-router-dom';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import { Header, RepositoryInfo, Issues } from './styles';
+import intl from 'react-intl-universal';
+import { RepositoryInfo, Issues } from './styles';
+
+import Header from '../../components/Header';
 
 import api from '../../services/api';
 
-import logoImg from '../../assets/logo.svg';
+import { useIntlUniversal } from '../../hooks/IntlUniversalContext';
 
-interface RepositoryParams {
+interface IRepositoryParams {
   repository: string;
 }
 
-interface Repository {
+interface IRepository {
   full_name: string;
   description: string;
   stargazers_count: number;
@@ -23,7 +26,7 @@ interface Repository {
   };
 }
 
-interface Issue {
+interface IIssue {
   title: string;
   id: number;
   html_url: string;
@@ -33,10 +36,12 @@ interface Issue {
 }
 
 const Repository: React.FC = () => {
-  const [repository, setRepository] = useState<Repository | null>(null);
-  const [issues, setIssues] = useState<Issue[]>([]);
+  const [repository, setRepository] = useState<IRepository | null>(null);
+  const [issues, setIssues] = useState<IIssue[]>([]);
 
-  const { params } = useRouteMatch<RepositoryParams>();
+  const { params } = useRouteMatch<IRepositoryParams>();
+
+  useIntlUniversal();
 
   useEffect(() => {
     async function loadData(): Promise<void> {
@@ -55,10 +60,9 @@ const Repository: React.FC = () => {
   return (
     <>
       <Header>
-        <img src={logoImg} alt="Github Explorer" />
         <Link to="/">
           <FiChevronLeft size={16} />
-          Voltar
+          {intl.get('buttons.back')}
         </Link>
       </Header>
 
@@ -82,7 +86,7 @@ const Repository: React.FC = () => {
             </li>
             <li>
               <strong>{repository.open_issues_count}</strong>
-              <span>Issues abertas</span>
+              <span>{intl.get('buttons.issues-open')}</span>
             </li>
           </ul>
         </RepositoryInfo>

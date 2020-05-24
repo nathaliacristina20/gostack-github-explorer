@@ -25,7 +25,7 @@ const Dashboard: React.FC = () => {
   const [newRepo, setNewRepo] = useState('');
   const [inputError, setInputError] = useState('');
 
-  const { currentLanguage } = useIntlUniversal();
+  useIntlUniversal();
 
   const [repositories, setRepositories] = useState<IRepository[]>(() => {
     const storagedRepositories = localStorage.getItem(
@@ -52,7 +52,7 @@ const Dashboard: React.FC = () => {
     event.preventDefault();
 
     if (!newRepo) {
-      setInputError('Digite o autor/nome do repositório');
+      setInputError(intl.get('errors.empty-search'));
       return;
     }
 
@@ -63,13 +63,14 @@ const Dashboard: React.FC = () => {
       setNewRepo('');
       setInputError('');
     } catch (err) {
-      setInputError('Erro na busca por esse repositório');
+      setInputError(
+        intl.getHTML('errors.repository-not-found', { repository: newRepo }),
+      );
     }
   }
   return (
     <>
       <Header />
-
       <Title>{intl.get('home.title')}</Title>
       {/* ou !!inputError */}
 

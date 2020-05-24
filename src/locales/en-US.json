@@ -5,5 +5,13 @@
       "placeholder": "Enter the name of the repository",
       "button": "Search"
     }
+  },
+  "buttons":{
+    "back": "Back",
+    "issues-open": "Open issues"
+  },
+  "errors": {
+    "empty-search": "Enter the author / name of the repository",
+    "repository-not-found": "The repository <strong>{repository}</strong> not found"
   }
 }
