@@ -16,11 +16,15 @@ import usePersistedState from '../utils/usePersistedState';
 interface IIntlUniversalContextData {
   changeCurrentLocale(): void;
   initDone?: boolean;
-  currentLanguage: string;
+  currentLanguage: ILanguage;
 }
 
 interface ILocales {
   [key: string]: {};
+}
+
+interface ILanguage {
+  language: string;
 }
 
 const IntlUniversalContext = createContext<IIntlUniversalContextData>(
@@ -33,18 +37,17 @@ const IntlUniversalProvider: React.FC = ({ children }) => {
     'en-US': enUS,
   });
 
-  const [currentLanguage, setCurrentLanguage] = useState(() => {
-    localStorage.setItem('language', 'pt-BR');
-
-    return 'pt-BR';
-  });
+  const [currentLanguage, setCurrentLanguage] = usePersistedState<ILanguage>(
+    'currentLanguage',
+    { language: 'pt-BR' },
+  );
 
   const [initDone, setInitDone] = useState(false);
 
   useEffect(() => {
     intl
       .init({
-        currentLocale: currentLanguage,
+        currentLocale: currentLanguage.language,
         locales,
       })
       .then(() => {
@@ -55,16 +58,14 @@ const IntlUniversalProvider: React.FC = ({ children }) => {
   }, [currentLanguage, locales]);
 
   const changeCurrentLocale = useCallback(() => {
-    // setCurrentLanguage(currentLanguage === 'pt-BR' ? 'en-US' : 'pt-BR');
     let changedLanguage;
-    if (currentLanguage === 'pt-BR') {
+    if (currentLanguage.language === 'pt-BR') {
       changedLanguage = 'en-US';
-      localStorage.setItem('language', changedLanguage);
     } else {
       changedLanguage = 'pt-BR';
-      localStorage.setItem('language', changedLanguage);
     }
-    setCurrentLanguage(changedLanguage);
+
+    setCurrentLanguage({ language: changedLanguage });
   }, [currentLanguage, setCurrentLanguage]);
 
   return (
